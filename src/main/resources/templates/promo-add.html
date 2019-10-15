@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}"
+	xmlns:th="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+
+	<div class="corpo" layout:fragment="corpo">
+
+		<div id="loader-form" class="pre-load"></div>
+
+		<form id="form-add-promo" action="#">
+
+			<div id="alert"></div>
+
+			<div class="form-group">
+				<label for="linkPromocao">Link da Oferta</label> <input type="url"
+					class="form-control" id="linkPromocao" name="linkPromocao"
+					aria-describedby="linkOferta" placeholder="Ex.: http://www..." /> <small
+					id="linkOferta" class="form-text text-muted">Insira o link
+					da promocao correspondente a oferta. </small>
+				<div id="error-linkPromocao" class=""></div>
+			</div>
+			<div class="form-group">
+				<label for="titulo">Título da Oferta</label> <input type="text"
+					class="form-control" id="titulo" name="titulo"
+					aria-describedby="tituloOferta" /> <small id="tituloOferta"
+					class="form-text text-muted">Carregamento automático, mas
+					pode ser editado.</small>
+				<div id="error-titulo"></div>
+			</div>
+
+			<div class="form-row">
+				<div class=" col-md-4">
+					<div class="card" style="width: 18rem;">
+						<div class="card-header">Imagem</div>
+						<span class="mx-auto" id="loader-img">
+							
+						</span> 
+						
+						<img id="linkImagem"
+							name="linkImagem" class="card-img-top"
+							th:src="@{/images/promo-dark.png}" width="308px" />
+						<div class="card-body bg-light">
+							<h5 id="site" class="card-title"></h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-8">
+					<div class="form-group">
+						<label for="preco">Preço da Oferta</label> <input type="text"
+							class="form-control" id="preco" name="preco"
+							placeholder="ex.: 59,99" data-mask="#.##0,00"
+							data-mask-reverse="true" />
+						<div id="error-preco" class=""></div>
+					</div>
+					<div class="form-group">
+						<label for="categoria">Categoria do Produto</label> 
+						<select id="categoria" name="categoria" class="form-control">
+							<option value="">Selecione</option>
+							<option th:each="c : ${categorias}" th:text="${c.titulo}"
+								th:value="${c.id}">...</option>
+						</select>
+						<div id="error-categoria"></div>
+					</div>
+					<div class="form-group">
+						<label for="descricao">Descrição da Oferta</label>
+						<textarea class="form-control" id="descricao" name="descricao"
+							placeholder="Algo sobre a promoção ou produto..."></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row p-3">
+				<button id="btn-og" class="btn btn-primary btn-lg btn-block">Cadastrar</button>
+				<span id="loader-img-btn"></span>
+			</div>
+		</form>
+
+	</div>
+
+	<script th:src="@{/js/promo-add.js}" th:fragment="js">
+		
+	</script>
+</body>
+</html>

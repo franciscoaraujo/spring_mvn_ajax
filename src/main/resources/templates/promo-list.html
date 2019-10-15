@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+
+	<div class="corpo" layout:fragment="corpo">
+		<main role="main">
+		<section class="jumbotron text-center pt-3 pb-3">
+			<div class="container">
+				<h1 class="jumbotron-heading">Promo Spring - Ofertas mais recentes</h1>
+				<p class="lead text-muted">Aproveite a lista de ofertas e pague	menos por seus desejos.</p>
+
+				<form id="form-autocomplete">
+					<div class="form-row">
+						<div class="form-group col-md-10">
+							<input id="autocomplete-input" name="site" type="text" class="form-control" placeholder="Ex.: udemy">
+						</div>
+						<div class="form-group col-md-2">
+							<button id="autocomplete-submit" type="button" class="btn btn-primary">Confirmar</button>
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</section>
+
+		<div class="album py-5 bg-light">
+			<div class="container">
+
+				<div class="form-group">
+					<button id="btn-alert"
+						    class="btn btn-warning btn-lg btn-block hidden"	style="display: none;"></button>
+				</div>
+
+				<div class="row">
+					<div class="card-group col-md-3 pb-4" th:each="promo : ${promocoes}">
+						<div th:id="${promo.id}" class="card">
+							<div class="block-img">
+								<img class="card-img-top" th:src="${promo.linkImagem}" alt="Card image cap">
+							</div>
+							<div class="card-body">
+								<h5 class="card-title" th:text="${promo.site}">site.com.br</h5>
+								<p class="card-text" th:text="${promo.descricao}">sobre a promoção</p>
+								<div>
+									<h6 class="badge badge-primary" th:text="|R$ ${{promo.preco}}|">R$ 9,99</h6>
+								</div>
+								<div class="btn-group">
+									<button th:id="${'likes-count-' + promo.id}" type="button"
+										class="btn btn-sm btn-outline-secondary"
+										th:text="${promo.likes}"></button>
+									<button th:id="${'likes-btn-' + promo.id}" type="button"
+										class="btn btn-sm btn-outline-secondary">
+										<i class="far fa-thumbs-up"></i>
+									</button>
+									<a th:href="${promo.linkPromocao}"
+										class="btn btn-sm btn-outline-secondary" role="button"
+										aria-pressed="true" target="new">Ver Oferta</a>
+								</div>
+							</div>
+							<div class="card-footer">
+								<small class="text-muted"
+									th:text="${#temporals.format(promo.dtCadastro, 'dd/MM/yyyy')}">9 mins</small>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="loading">
+					<div id="loader-img" class="mx-auto loader"></div>
+					<a id="fim-btn" type='button' href='#' class='btn btn-info mx-auto'>Fim! Voltar ao topo</a>
+				</div>
+			</div>
+		</div>
+		</main>
+	</div>
+
+	<script></script>
+</body>
+</html>
