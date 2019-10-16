@@ -36,7 +36,6 @@ public class SocialMetaTagService {
 		Document doc;
 		try {
 			doc = Jsoup.connect(url).get();
-
 			metaTag.setTitle(doc.head().select("meta[property=og:title]").attr("content"));
 			metaTag.setSite(doc.head().select("meta[property=og:site_name]").attr("content"));
 			metaTag.setImage(doc.head().select("meta[property=og:image]").attr("content"));
@@ -56,7 +55,6 @@ public class SocialMetaTagService {
 		Document doc;
 		try {
 			doc = Jsoup.connect(url).get();
-
 			metaTag.setTitle(doc.head().select("meta[property=twitter:title]").attr("content"));
 			metaTag.setSite(doc.head().select("meta[property=twitter:site]").attr("content"));
 			metaTag.setImage(doc.head().select("meta[property=twitter:image]").attr("content"));

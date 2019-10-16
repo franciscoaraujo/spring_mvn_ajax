@@ -54,9 +54,7 @@
 										class="btn btn-sm btn-outline-secondary">
 										<i class="far fa-thumbs-up"></i>
 									</button>
-									<a th:href="${promo.linkPromocao}"
-										class="btn btn-sm btn-outline-secondary" role="button"
-										aria-pressed="true" target="new">Ver Oferta</a>
+									<a th:href="${promo.linkPromocao}" class="btn btn-sm btn-outline-secondary" role="button" aria-pressed="true" target="new">Ver Oferta</a>
 								</div>
 							</div>
 							<div class="card-footer">
@@ -76,6 +74,6 @@
 		</main>
 	</div>
 
-	<script></script>
+	<script th:src="@{/js/promo.add.js}" th:fragment="js"></script>
 </body>
 </html>

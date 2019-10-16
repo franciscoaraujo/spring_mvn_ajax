@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @SuppressWarnings("serial")
 @Entity
@@ -25,7 +26,7 @@ public class Categoria implements Serializable {
 	
 	@OneToMany(mappedBy = "categoria")
 	private List<Promocao> promocoes;
-
+		
 	public Long getId() {
 		return id;
 	}
