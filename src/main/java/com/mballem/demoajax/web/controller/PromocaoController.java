@@ -42,14 +42,13 @@ public class PromocaoController {
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	
-	
 	@GetMapping("/tabela")
 	public String showTable() {
 		return "promo-datatables";
 	}
 	
 	@GetMapping("/datatables/server")
-	public ResponseEntity<?> dataTables(HttpServletRequest request){
+	public ResponseEntity<?> dataTables(HttpServletRequest request) {
 		Map<String, Object> data = new PromocaoDataTableService().execute(promocaoRepository, request);
 		return ResponseEntity.ok(data);
 	}
@@ -57,45 +56,48 @@ public class PromocaoController {
 	@GetMapping("/site/list")
 	public String listarPorSite(@RequestParam("site") String site, ModelMap model) {
 		Sort sort = new Sort(Sort.Direction.DESC, "dtCadastro");
-		PageRequest pageRequest = PageRequest.of(0, 8,sort);//adicioando limite de produtos na pagina para fazer a paginacao
-		model.addAttribute("promocoes", promocaoRepository.findBySite(site,pageRequest));
+		PageRequest pageRequest = PageRequest.of(0, 8, sort);// adicioando limite de produtos na pagina para fazer a
+																// paginacao
+		model.addAttribute("promocoes", promocaoRepository.findBySite(site, pageRequest));
 		return "promo-card";
 	}
-	
+
 	@GetMapping("/site")
-	public ResponseEntity<?> autoCompleteByTermo(@RequestParam("termo")String  termo){
-		List<String>sites = promocaoRepository.findSiteByTermo(termo);
+	public ResponseEntity<?> autoCompleteByTermo(@RequestParam("termo") String termo) {
+		List<String> sites = promocaoRepository.findSiteByTermo(termo);
 		return ResponseEntity.ok(sites);
 	}
-	
+
 	@PostMapping("/like/{id}")
-	public ResponseEntity<?> adicionarLikes(@PathVariable("id") Long id){
+	public ResponseEntity<?> adicionarLikes(@PathVariable("id") Long id) {
 		promocaoRepository.updateSomarLikes(id);
 		int likes = promocaoRepository.findLikesById(id);
 		return ResponseEntity.ok(likes);
 	}
-	
+
 	@GetMapping("/list")
 	public String listaOfertas(ModelMap model) {
 		Sort sort = new Sort(Sort.Direction.DESC, "dtCadastro");
-		PageRequest pageRequest = PageRequest.of(0, 8,sort);//adicioando limite de produtos na pagina para fazer a paginacao
+		PageRequest pageRequest = PageRequest.of(0, 8, sort);// adicioando limite de produtos na pagina para fazer a
+																// paginacao
 		model.addAttribute("promocoes", promocaoRepository.findAll(pageRequest));
 		return "promo-list";
 	}
-	
+
 	@GetMapping("/list/ajax")
-	public String listaCards(@RequestParam(name="page", defaultValue = "1") int page, @RequestParam(name="site", defaultValue = "") String site, ModelMap model) {
+	public String listaCards(@RequestParam(name = "page", defaultValue = "1") int page,
+			@RequestParam(name = "site", defaultValue = "") String site, ModelMap model) {
 		Sort sort = new Sort(Sort.Direction.DESC, "dtCadastro");
-		PageRequest pageRequest = PageRequest.of(page, 8,sort);//adicioando limite de produtos na pagina para fazer a paginacao
-		if(site.isEmpty()) {
+		PageRequest pageRequest = PageRequest.of(page, 8, sort);// adicioando limite de produtos na pagina para fazer a
+																// paginacao
+		if (site.isEmpty()) {
 			model.addAttribute("promocoes", promocaoRepository.findAll(pageRequest));
-		}else {
+		} else {
 			model.addAttribute("promocoes", promocaoRepository.findBySite(site, pageRequest));
 		}
 		return "promo-card";
 	}
-	
-	
+
 	@PostMapping("/save")
 	public ResponseEntity<?> salvarPromocao(@Valid Promocao promocao, BindingResult result) {
 		if (result.hasErrors()) {
@@ -105,8 +107,8 @@ public class PromocaoController {
 			}
 			return ResponseEntity.unprocessableEntity().body(errors);
 		}
-
 		log.info("Promocao {} ", promocao.toString());
+		
 		promocao.setDtCadastro(LocalDate.now());
 		promocaoRepository.save(promocao);
 		return ResponseEntity.ok().build();

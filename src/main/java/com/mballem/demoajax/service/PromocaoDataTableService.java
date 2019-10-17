@@ -53,7 +53,7 @@ public class PromocaoDataTableService {
 		if (order.equalsIgnoreCase("desc")) {
 			sort = Sort.Direction.DESC;
 		}
-		return sort;
+		return null;
 	}
 
 	private String columnName(HttpServletRequest request) {

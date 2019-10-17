@@ -18,6 +18,8 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @SuppressWarnings("serial")
@@ -57,6 +59,7 @@ public class Promocao implements Serializable {
 	@Column(name="data_cadastro", nullable = false)
 	private LocalDate dtCadastro;
 	
+	@JsonIgnore
 	@NotNull(message="Uma categoria é requerida")
 	@ManyToOne
 	@JoinColumn(name="categoria_fk")
