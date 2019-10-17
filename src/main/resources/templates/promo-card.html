@@ -22,14 +22,24 @@
 				<h6 class="badge badge-primary" th:text="|R$ ${{promo.preco}}|">R$ 9,99</h6>
 			</div>
 			
+			
+			
+			
+			
 			<div class="btn-group">
-				<button th:id="${'likes-count-' + promo.id}" type="button" class="btn btn-sm btn-outline-secondary"
-					th:text="${promo.likes}"></button>
-				<button th:id="${'likes-btn-' + promo.id}" type="button" class="btn btn-sm btn-outline-secondary">
-					<i class="far fa-thumbs-up"></i>
-				</button>
-				<a th:href="${promo.linkPromocao}" class="btn btn-sm btn-outline-secondary" role="button" aria-pressed="true" target="new">Ver Oferta</a>
+				
+				<button th:id="${'likes-count-' + promo.id}" type="button" class="btn btn-sm btn-outline-secondary"	th:text="${promo.likes}"></button>
+					
+				<button th:id="${'likes-btn-' + promo.id}" type="button" class="btn btn-sm btn-outline-secondary"><i class="far fa-thumbs-up"></i>
+				
+				</button><a th:href="${promo.linkPromocao}" class="btn btn-sm btn-outline-secondary" role="button" aria-pressed="true" target="new">Ver Oferta</a>
+			
 			</div>
+			
+			
+			
+			
+			
 		</div>
 		<div class="card-footer">
 			<small class="text-muted"

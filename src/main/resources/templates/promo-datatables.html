@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+
+	<div class="corpo" layout:fragment="corpo">
+	
+		<table id="table-server" class="display" style="width:100%">
+		  <thead class="thead-dark">
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col">Titulo</th>
+		      <th scope="col">Site</th>
+		      <th scope="col">Link Promoção</th>
+		      <th scope="col">Descrição</th>
+		      <th scope="col">Link Imagem</th>
+		      <th scope="col">Preço</th>
+		      <th scope="col">Likes</th>
+		      <th scope="col">Data de Cadastro</th>
+		      <th scope="col">Categoria</th>
+		    </tr>
+		  </thead>
+		</table>
+        
+	</div>
+
+	<script th:src="@{/js/promo-datatables.js}" th:fragment="js"></script>
+</body>
+</html>

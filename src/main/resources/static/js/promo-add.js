@@ -22,7 +22,6 @@ $('#form-add-promo').submit(function(evt){
 		beforeSend: function(){
 			//removendo as mensagens
 			$('span').closest('.error-span').remove();
-			
 			//remover as bordas vermelhas
 			$('#categoria').removeClass('is-invalid');
 			$('#preco').removeClass('is-invalid');
