@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+
+	<!-- Modal -->
+	<div class="modal fade" id="modal-delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" th:fragment="modal-delete">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Excluir Promoção</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>Deseja realmente remover esta promoção? </p>
+					<p>Clique Confirmar para sim e Cancelar para não<p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"	data-dismiss="modal">Cancelar</button>
+					<button id="btn-del-modal" class="btn btn-danger">Confirmar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

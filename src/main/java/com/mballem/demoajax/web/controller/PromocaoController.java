@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mballem.demoajax.domain.Categoria;
 import com.mballem.demoajax.domain.Promocao;
+import com.mballem.demoajax.dto.PromocaoDTO;
 import com.mballem.demoajax.reposotory.CategoriaRepository;
 import com.mballem.demoajax.reposotory.PromocaoRepository;
 import com.mballem.demoajax.service.PromocaoDataTableService;
@@ -35,6 +36,7 @@ import com.mballem.demoajax.service.PromocaoDataTableService;
 public class PromocaoController {
 
 	private static Logger log = org.slf4j.LoggerFactory.getLogger(PromocaoController.class);
+	
 
 	@Autowired
 	private PromocaoRepository promocaoRepository;
@@ -47,11 +49,46 @@ public class PromocaoController {
 		return "promo-datatables";
 	}
 	
+	
 	@GetMapping("/datatables/server")
 	public ResponseEntity<?> dataTables(HttpServletRequest request) {
 		Map<String, Object> data = new PromocaoDataTableService().execute(promocaoRepository, request);
 		return ResponseEntity.ok(data);
 	}
+	
+	@GetMapping("/delete/{id}")
+	public ResponseEntity<?> excluirPromocao(@PathVariable("id") Long id){
+		promocaoRepository.deleteById(id);
+		return ResponseEntity.ok().build();
+	}
+	
+	@GetMapping("/edit/{id}")
+	public ResponseEntity<?> preEditarPromocao(@PathVariable("id") Long id){
+		Promocao promo = promocaoRepository.findById(id).get();
+		return ResponseEntity.ok(promo);
+	}
+	
+	@PostMapping("/edit")
+	public ResponseEntity<?> editarPromocao(@Valid PromocaoDTO dto, BindingResult result){
+		if (result.hasErrors()) {
+			Map<String, String> errors = new HashMap<>();
+			for (FieldError error : result.getFieldErrors()) {
+				errors.put(error.getField(), error.getDefaultMessage());
+			}
+			return ResponseEntity.unprocessableEntity().body(errors);
+		}
+		Promocao promo = promocaoRepository.findById(dto.getId()).get();
+		promo.setCategoria(dto.getCategoria());
+		promo.setDescricao(dto.getDescricao());
+		promo.setLinkImagem(dto.getLinkImagem());
+		promo.setPreco(dto.getPreco());
+		promo.setTitulo(dto.getTitulo());
+		
+		promocaoRepository.save(promo);
+		
+		return ResponseEntity.ok().build();
+	}
+	
 	
 	@GetMapping("/site/list")
 	public String listarPorSite(@RequestParam("site") String site, ModelMap model) {
@@ -108,7 +145,6 @@ public class PromocaoController {
 			return ResponseEntity.unprocessableEntity().body(errors);
 		}
 		log.info("Promocao {} ", promocao.toString());
-		
 		promocao.setDtCadastro(LocalDate.now());
 		promocaoRepository.save(promocao);
 		return ResponseEntity.ok().build();

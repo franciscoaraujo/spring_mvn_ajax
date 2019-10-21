@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+
+	<!-- Modal -->
+	<div class="modal fade" id="modal-form" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalCenterTitle" aria-hidden="true" th:fragment="modal-form">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Editar Promoção</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="form-edit-promo" action="#">					
+						<div class="form-group">
+							<label for="edt_titulo">Título da Oferta</label> <input
+								type="text" class="form-control" id="edt_titulo" name="titulo" />
+							<div id="error-titulo"></div>
+						</div>
+						<div class="form-row">
+							<div class="col-sm-7">
+								<div class="form-group">
+									<label for="edt_preco">Preço da Oferta</label> <input
+										type="text" class="form-control" id="edt_preco" name="preco"
+										placeholder="ex.: 59,99" data-mask="#.##0,00" 
+										data-mask-reverse="true" />
+									<div id="error-preco" class=""></div>
+								</div>
+								<div class="form-group">
+									<label for="edt_categoria">Categoria do Produto</label> <select
+										id="edt_categoria" name="categoria" class="form-control">
+										<option value="">Selecione</option>
+										<option th:each="c : ${categorias}" th:text="${c.titulo}"
+											th:value="${c.id}">...</option>
+									</select>
+									<div id="error-categoria"></div>
+								</div>
+								<div class="form-group">
+									<label for="edt_descricao">Descrição da Oferta</label>
+									<textarea class="form-control" id="edt_descricao"
+										name="descricao"
+										placeholder="Algo sobre a promoção ou produto..."></textarea>
+								</div>
+								<div class="form-group">
+									<label for="edt_linkImagem">Nova Imagem</label> <input
+										type="url" class="form-control" id="edt_linkImagem" name="linkImagem" placeholder="http://..."/>
+									<div id="error-linkImagem" class=""></div>
+								</div>
+							</div>
+							<div class=" col-sm-5 ">
+								<div class="card" style="width: 18rem;">
+									<div class="card-header">Imagem</div>
+									<span class="mx-auto" id="loader-img"></span> <img
+										id="edt_imagem" class="card-img-top"
+										th:src="@{/images/promo-dark.png}" width="308px" />
+									<div class="card-body bg-light">
+							        	<h5 id="edt_site" class="card-title"></h5>
+							        </div>
+								</div>
+							</div>
+						</div>
+						<input type="hidden" class="form-control" id="edt_id" name="id" /> 
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"	data-dismiss="modal">Cancelar</button>
+					<button id="btn-edit-modal" class="btn btn-primary">Confirmar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>
