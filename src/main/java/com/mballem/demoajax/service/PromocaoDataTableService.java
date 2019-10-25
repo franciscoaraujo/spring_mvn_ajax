@@ -22,40 +22,30 @@ public class PromocaoDataTableService {
 	
 	private static Logger log = org.slf4j.LoggerFactory.getLogger(PromocaoDataTableService.class);
 	
-
-	private String[] cols = { "id", "titulo", "site", "linkPromocao", "descricao", "linkImagem", "preco", "likes",
-			"dtCadastro"
-			/*"categoria.titulo"*/ };
+	private String[] cols = { "id", "titulo", "site", "linkPromocao", "descricao", "linkImagem", "preco", "likes","dtCadastro",	"promocao.categoria.titulo" };
 
 	public Map<String, Object> execute(PromocaoRepository repository, HttpServletRequest request) {
 		
-		/*Existe um problema para resolver no campo Titulo da tabela, por algum motivo nao esta vindo o valor mesmo existindo na tabela*/
-		
-		Map<String, Object> json = new LinkedHashMap<>();
-
 		int start = Integer.parseInt(request.getParameter("start"));
 		int length = Integer.parseInt(request.getParameter("length"));
 		int draw = Integer.parseInt(request.getParameter("draw"));
-		
-		
 		int current = currentPage(start, length);
-
+		
 		String colunm = columnName(request);
 		Sort.Direction direction = orderBy(request);
-
 		String search = searchBy(request);
-
+		
 		Pageable pageable = PageRequest.of(current, length, direction, colunm);
-
 		Page<Promocao> page = queryBy(search,repository, pageable);
-
+		
+		Map<String, Object> json = new LinkedHashMap<>();
+		
 		json.put("draw", draw);
 		json.put("recordsTotal", page.getTotalElements());
 		json.put("recordsFiltered", page.getTotalElements());
 		json.put("data", page.getContent());
 		
 		return json;
-
 	}
 
 	private String searchBy(HttpServletRequest request) {
@@ -77,9 +67,11 @@ public class PromocaoDataTableService {
 	private Direction orderBy(HttpServletRequest request) {
 		String order = request.getParameter("order[0][dir]");
 		Sort.Direction sort = Sort.Direction.ASC;
+		
 		if (order.equalsIgnoreCase("desc")) {
 			sort = Sort.Direction.DESC;
 		}
+		
 		return sort;
 	}
 

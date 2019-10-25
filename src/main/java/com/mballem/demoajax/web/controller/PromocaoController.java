@@ -37,7 +37,6 @@ public class PromocaoController {
 
 	private static Logger log = org.slf4j.LoggerFactory.getLogger(PromocaoController.class);
 	
-
 	@Autowired
 	private PromocaoRepository promocaoRepository;
 
@@ -48,7 +47,6 @@ public class PromocaoController {
 	public String showTable() {
 		return "promo-datatables";
 	}
-	
 	
 	@GetMapping("/datatables/server")
 	public ResponseEntity<?> dataTables(HttpServletRequest request) {
@@ -93,25 +91,25 @@ public class PromocaoController {
 	@GetMapping("/site/list")
 	public String listarPorSite(@RequestParam("site") String site, ModelMap model) {
 		Sort sort = new Sort(Sort.Direction.DESC, "dtCadastro");
-		PageRequest pageRequest = PageRequest.of(0, 8, sort);// adicioando limite de produtos na pagina para fazer a
-																// paginacao
+		/*adicioando limite de produtos na pagina para fazer a paginacao*/
+		PageRequest pageRequest = PageRequest.of(0, 8, sort);
 		model.addAttribute("promocoes", promocaoRepository.findBySite(site, pageRequest));
 		return "promo-card";
 	}
-
+	
 	@GetMapping("/site")
 	public ResponseEntity<?> autoCompleteByTermo(@RequestParam("termo") String termo) {
 		List<String> sites = promocaoRepository.findSiteByTermo(termo);
 		return ResponseEntity.ok(sites);
 	}
-
+	
 	@PostMapping("/like/{id}")
 	public ResponseEntity<?> adicionarLikes(@PathVariable("id") Long id) {
 		promocaoRepository.updateSomarLikes(id);
 		int likes = promocaoRepository.findLikesById(id);
 		return ResponseEntity.ok(likes);
 	}
-
+	
 	@GetMapping("/list")
 	public String listaOfertas(ModelMap model) {
 		Sort sort = new Sort(Sort.Direction.DESC, "dtCadastro");
@@ -134,7 +132,7 @@ public class PromocaoController {
 		}
 		return "promo-card";
 	}
-
+	
 	@PostMapping("/save")
 	public ResponseEntity<?> salvarPromocao(@Valid Promocao promocao, BindingResult result) {
 		if (result.hasErrors()) {
@@ -149,7 +147,7 @@ public class PromocaoController {
 		promocaoRepository.save(promocao);
 		return ResponseEntity.ok().build();
 	}
-
+	
 	@ModelAttribute("categorias") // faz referencia da categoria na pagina
 	public List<Categoria> getCategorias() {
 		return categoriaRepository.findAll();

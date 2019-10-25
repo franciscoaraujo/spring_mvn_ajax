@@ -22,7 +22,6 @@ public class PromocaoDTO {
 	@NotBlank(message="Um titulo é requerido")
 	private String titulo;
 	
-	
 	private String descricao;
 	
 	@NotBlank
@@ -31,8 +30,6 @@ public class PromocaoDTO {
 	@NotNull(message="O preço é requerido")
 	@NumberFormat(style = Style.CURRENCY , pattern = "#,##0.00")
 	private BigDecimal preco;
-	
-	
 	
 	@NotNull(message="Uma categoria é requerida")
 	private Categoria categoria;
