@@ -2,9 +2,8 @@ package com.mballem.demoajax.domain;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class SocialMetaTag implements Serializable {
-
-	private static final long serialVersionUID = 1L;
 
 	private String site;
 	private String title;
@@ -39,6 +38,4 @@ public class SocialMetaTag implements Serializable {
 	public String toString() {
 		return "SocialMetaTag [site=" + site + ", title=" + title + ", url=" + url + ", image=" + image + "]";
 	}
-	
-	
 }

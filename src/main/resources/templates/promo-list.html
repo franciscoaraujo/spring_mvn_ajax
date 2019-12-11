@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<html layout:decorate="~{layout}">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
@@ -33,10 +33,11 @@
 					<button id="btn-alert"
 						    class="btn btn-warning btn-lg btn-block hidden"	style="display: none;"></button>
 				</div>
-				
+
 				<div class="row" th:insert="promo-card">
+					
 				</div>
-				
+
 				<div id="loading">
 					<div id="loader-img" class="mx-auto loader"></div>
 					<a id="fim-btn" type='button' href='#' class='btn btn-info mx-auto'>Fim! Voltar ao topo</a>

@@ -13,23 +13,21 @@
 		      <th scope="col">#</th>
 		      <th scope="col">Titulo</th>
 		      <th scope="col">Site</th>
-		      <th scope="col">Link Promoção:</th>
-		      <th scope="col">Descrição:</th>
-		      <th scope="col">Link Imagem:</th>
-		      <th scope="col">Preço:</th>
-		      <th scope="col">Likes:</th>
-		      <th scope="col">Data de Cadastro:</th>
- 		      <th scope="col">Categoria:</th> 
+		      <th scope="col">Link Promoção</th>
+		      <th scope="col">Descrição</th>
+		      <th scope="col">Link Imagem</th>
+		      <th scope="col">Preço</th>
+		      <th scope="col">Likes</th>
+		      <th scope="col">Data de Cadastro</th>
+		      <th scope="col">Categoria</th>
 		    </tr>
 		  </thead>
-		  
 		</table>
-        
-        <div th:replace="promo-datatables-modal :: modal-form"></div>
-       	<div th:replace="promo-datatables-modal-del :: modal-delete"></div>
-       	 
-	</div>
 		
+		<div th:replace="promo-datatables-modal :: modal-form"></div>	
+		<div th:replace="promo-datatables-modal-del :: modal-delete"></div>	  
+	</div>
+
 	<script th:src="@{/js/promo-datatables.js}" th:fragment="js"></script>
 </body>
 </html>
