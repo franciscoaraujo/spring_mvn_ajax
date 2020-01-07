@@ -10,10 +10,10 @@ import org.springframework.context.annotation.ImportResource;
 
 @ImportResource(locations = "classpath:dwr-spring.xml")
 @SpringBootApplication
-public class DemoAjaxApplication implements CommandLineRunner {
+public class Application implements CommandLineRunner {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoAjaxApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 	
 	@Override

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+
+	<div class="corpo col-md-8 " layout:fragment="corpo">
+
+		<div id="loader-form" class="pre-load"></div>
+
+		<form id="form-add-user" action="#">
+
+			<div id="alert"></div>
+
+			<div class="form-group">
+				<label for="linkPromocao">Nome Usuario</label> <input type="url"
+					class="form-control" id="nomeUsuario" name="nomeUsuario"
+					aria-describedby="nomeUsuario" />
+
+				<div id="error-usuarioCadastro" class=""></div>
+			</div>
+			<div class="form-group">
+				<label for="titulo">Email Usuario</label> <input type="text"
+					class="form-control" id="emailUsuario" name="emailUsuario"
+					aria-describedby="emailUsuario" placeholder="usuario@email.com" />
+				<div id="error-emailUsuarioCadastro"></div>
+			</div>
+
+			<div class="form-group">
+				<label for="titulo">Senha</label> <input type="password"
+					class="form-control" id="senhaUsuario" name="senhaUsuario"
+					aria-describedby="senhaUsuario" />
+				<div id="error-senhaCadastro"></div>
+			</div>
+
+			<div class="form-group">
+				<label for="perfil">Perdil Usuario</label> <select id="perfil"
+					name="perfil" class="form-control">
+					<option value="">Selecione</option>
+					<option value="">Administrador</option>
+					<option value="">Usuario</option>
+
+					<!-- 						<option th:each="c : ${categorias}" th:text="${c.titulo}" -->
+					<!-- 							th:value="${c.id}">...</option> -->
+
+				</select>
+				<div id="error-categoria"></div>
+			</div>
+	</div>
+	</div>
+	<div class="row p-3">
+		<button id="btn-og" class="btn btn-primary btn-lg btn-block">Cadastrar</button>
+		<span id="loader-img-btn"></span>
+	</div>
+	</form>
+
+	</div>
+
+	<script th:src="@{/js/promo-add.js}" th:fragment="js"></script>
+</body>
+</html>
